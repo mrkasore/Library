@@ -33,10 +33,10 @@ form.addEventListener('submit', function(e) {
     let title = document.querySelector('.title').value;
     let author = document.querySelector('.author').value;
     let pages = document.querySelector('.pages').value;
-    let read = 'Not read';
+    let read = document.querySelector('.readen').checked;
     let index = i;
     myLibrary.push(new Book(title, author, pages, read, index));
-    //console.log(myLibrary);
+    console.log(myLibrary[0].read);
     
     let div = document.createElement('div');
     div.innerHTML = myLibrary[i].title;
@@ -50,22 +50,41 @@ form.addEventListener('submit', function(e) {
     div3.innerHTML = myLibrary[i].pages;
     document.body.querySelector('.txt').append(div3);
 
-
-
+    console.log(document.querySelector('.readen').checked);
+    console.log(myLibrary[i].read);
     let btnRead = document.createElement('button');
-    btnRead.innerHTML = 'Not read';
+
     btnRead.setAttribute('class', 'read');
+    document.body.querySelector('.txt').append(btnRead);
+    btnRead.classList.add('activeBtn');
+    btnRead.setAttribute('id', i);
+    if (read) {
+        btnRead.innerHTML = 'Read';
+        btnRead.classList.remove('NotActiveBtn');
+        btnRead.classList.add('activeBtn');
+        myLibrary[i].read = true;
+    } else {
+        btnRead.innerHTML = 'Not read';
+        btnRead.classList.remove('activeBtn');
+        btnRead.classList.add('NotActiveBtn');
+        myLibrary[i].read = false;
+    }
 
     btnRead.addEventListener('click', function(e) {
-        if(e.target.innerHTML === 'Not read') {
-            e.target.innerHTML = 'Read';
-        } else {
-            e.target.innerHTML = 'Not read';
+        if (e.target.classList.contains('NotActiveBtn')) {
+            btnRead.innerHTML = 'Read';
+            btnRead.classList.remove('NotActiveBtn');
+            btnRead.classList.add('activeBtn');
+            myLibrary[e.target.id].read = true;
+
+        } else if (e.target.classList.contains('activeBtn')){
+            btnRead.innerHTML = 'Not read';
+            btnRead.classList.remove('activeBtn');
+            btnRead.classList.add('NotActiveBtn');
+            myLibrary[e.target.id].read = false;
+
         }
-        //locStor();
-        //window.location.reload();
     });
-    document.body.querySelector('.txt').append(btnRead);
 
     let div5 = document.createElement('button');
     div5.innerHTML = 'Remove';
@@ -128,26 +147,35 @@ function get() {
         document.body.querySelector('.txt').append(div3);
 
 
-
         let btnRead = document.createElement('button');
-        btnRead.innerHTML = myLibrary[i].read;
         btnRead.setAttribute('class', 'read');
-        let t = btnRead.innerHTML;
-        btnRead.addEventListener('click', function(e) {
-            if(e.target.innerHTML === 'Not read') {
-                t = 'Read';
-                myLibrary[i].read = t;
-                //locStor();
-            } else {
-                t = 'Not read';
-                myLibrary[i].read = t;
-                //locStor();
-            }
-            locStor();
-
-            window.location.reload();
-        });
         document.body.querySelector('.txt').append(btnRead);
+        if (b[i].read) {
+            btnRead.innerHTML = 'Read';
+            btnRead.classList.remove('NotActiveBtn');
+            btnRead.classList.add('activeBtn');
+        } else {
+            btnRead.innerHTML = 'Not read';
+            btnRead.classList.remove('activeBtn');
+            btnRead.classList.add('NotActiveBtn');
+        }
+        btnRead.setAttribute('id', i);
+
+        btnRead.addEventListener('click', function(e) {
+            if (e.target.classList.contains('NotActiveBtn')) {
+                btnRead.innerHTML = 'Read';
+                btnRead.classList.remove('NotActiveBtn');
+                btnRead.classList.add('activeBtn');
+                myLibrary[e.target.id].read = true;
+                locStor();
+            } else if (e.target.classList.contains('activeBtn')){
+                btnRead.innerHTML = 'Not read';
+                btnRead.classList.remove('activeBtn');
+                btnRead.classList.add('NotActiveBtn');
+                myLibrary[e.target.id].read = false;
+                locStor();
+            }
+        });
 
 
 
@@ -166,7 +194,6 @@ function get() {
 
         document.body.querySelector('.txt').append(div5);
 
-        myLibrary[i].read = t;
 
     }
 

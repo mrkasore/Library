@@ -1,9 +1,11 @@
 * {
     margin: 0;
     padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 17px;
 }
 body {
-    background-color: bisque;
+    background-color: rgb(92, 236, 63);
     display: flex;
 
     align-items: center;
@@ -16,15 +18,15 @@ body {
     font-size: 20px;
     background-color: aqua;
     width: 600px;
-    background-color: orange;
+    background-color: rgb(128, 243, 117);
     align-items: center;
     justify-content: center;
     margin-top: 50px;
 }
 
 div {
-    display: fle;
     justify-content: center;
+    gap: 5px;
 }
 
 .form {
@@ -55,6 +57,7 @@ form {
 
 .form2 {
     position: fixed;
+    background: rgb(128, 243, 117);
     backdrop-filter: blur(5px);
     height: 100vh;
     width: 100%;
@@ -67,3 +70,57 @@ button {
     border-style: none;
     margin: 2px;
 }
+
+.remove {
+    background-color: red;
+    color: white;
+    font-size: 17px;
+}
+
+
+
+.headForm {
+    color: white;
+    display: grid;
+    justify-content: center;
+}
+
+.txt {
+    padding-left: 10px;
+    display: grid;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+::placeholder {
+    text-align: center; 
+ }
+
+ input {
+    text-align: center;
+    height: 40px;
+    background-color: aquamarine;
+  }
+
+  .readDiv {
+    display: flex;
+    background-color: aquamarine;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  .activeBtn {
+    background-color: greenyellow;
+  }
+
+  .NotActiveBtn {
+    background-color: blueviolet;
+  }
+
